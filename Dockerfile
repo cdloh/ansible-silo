@@ -28,12 +28,13 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-FROM grpn/ansible-silo-base:2.0.1
+FROM cdloh/ansible-silo-base:2.1.1
 
 ENV ANSIBLE_VERSION v2.7.0
 ENV ANSIBLE_LINT_VERSION 3.5.0
-ENV SILO_IMAGE grpn/ansible-silo
+ENV SILO_IMAGE cdloh/ansible-silo
 
+ARG CACHEBUST=1
 ADD silo /silo/
 
 # Install pip modules from requirements file

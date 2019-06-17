@@ -30,11 +30,11 @@
 
 SHELL := /bin/bash
 
-SILO_IMG := grpn/ansible-silo
+SILO_IMG := cdloh/ansible-silo
 SILO_VERSION := $(shell cat VERSION)
 
-BASE_IMG := grpn/ansible-silo-base
-BASE_VERSION := 2.0.1
+BASE_IMG := cdloh/ansible-silo-base
+BASE_VERSION := 2.1.1
 
 ansible-silo: validate-version
 	@docker build --build-arg "v=$(SILO_VERSION)" --tag "${SILO_IMG}:$(SILO_VERSION)" .
