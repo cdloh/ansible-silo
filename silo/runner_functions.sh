@@ -54,7 +54,6 @@
 # user through environment var
 readonly SILO_IMAGE="{{ SILO_IMAGE }}"
 readonly SILO_IMAGE_SHORT="{{ SILO_IMAGE_SHORT }}"
-readonly SILO_VERSION="{{ SILO_VERSION }}"
 
 #######################################
 # Forwards the name and UID of the user starting the container into the
