@@ -308,6 +308,19 @@ get_ansible_version() {
 }
 
 #######################################
+# Print current ansible version of git repo
+# Globals:
+#   None
+# Arguments:
+#   None
+# Returns:
+#   None
+#######################################
+get_ansible_version_git() {
+  git -C /silo/userspace/ansible status | head -1 | awk -F 'at ' {'print $2'}
+}
+
+#######################################
 # Switch Ansible to a given git tag, branch or commit ID
 # Globals:
 #   None
@@ -352,6 +365,30 @@ switch_ansible_version() {
     prepare_user
     prepare_ansible
     echo "Switched to Ansible $(get_ansible_version)"
+  fi
+}
+
+#######################################
+# Check ansible version matches what we want to enforce
+# Globals:
+#   ANSIBLE_FORCED_VERSION
+#   ANSIBLE_IGNORE
+# Arguments:
+#   None
+# Returns:
+#   None
+#######################################
+check_ansible_version() {
+  # If we don't have that variable then return
+  if [[ ! -v ANSIBLE_FORCED_VERSION ]]; then return; fi
+
+  # If the overwrite variable is set ignore as well
+  if [[ -v ANSIBLE_IGNORE ]]; then return; fi
+
+  if [[ "v$ANSIBLE_FORCED_VERSION" != "$(get_ansible_version_git)" ]]; then
+    switch_ansible_version "v${ANSIBLE_FORCED_VERSION}"
+    echo "Ansible version changed. Please rerun your command"
+    exit 0
   fi
 }
 

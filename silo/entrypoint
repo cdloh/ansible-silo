@@ -36,6 +36,7 @@
 source /silo/silo_functions.sh
 
 check_compatibility
+check_ansible_version
 
 case "$1" in
   "--version")
