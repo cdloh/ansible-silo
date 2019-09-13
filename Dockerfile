@@ -30,7 +30,7 @@
 
 FROM cdloh/ansible-silo-base:2.1.1
 
-ENV ANSIBLE_VERSION v2.7.0
+ENV ANSIBLE_VERSION v2.6.2
 ENV ANSIBLE_LINT_VERSION 3.5.0
 ENV SILO_IMAGE cdloh/ansible-silo
 
